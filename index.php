@@ -6,31 +6,27 @@
 		
 		<link rel="stylesheet" href="css/style.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--		<script type="text/javascript" src="scripts/jquery-validation-1.11.0/dist/jquery.validate.min.js"></script>-->
 		<script>
 		//run when the document has fully loaded
 		$(document).ready(function(){
 
-			//handle form submission events
+			handle form submission events
 			$('#applicationForm').submit(function() {
-
 				//get all text field inputs
 				var $textInputs = $('#applicationForm :input[type="text"]');
-				// var textValues = {};
-
 				//loop through each text input 
-				// (and store the value of it in an associative array(name:value) )?
 				$textInputs.each(function() {
-					// textValues[this.name] = $(this).val();
+					//if the input is required and empty, add a red background to it and display an error
 					if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
-						//if the input is required and empty, add a red background to it and display an error
 						console.log("required");
 						$(this).addClass('error');
-						// $(this).text("you fucked up");
-					}
+					}//end if
 				});//end each loop for textInputs
 			});//end form submission handler
-		});
-		
+
+		});//end document ready
+
 		</script>
 	</head>
 
@@ -46,11 +42,11 @@
 				fields are marked in <span class="required">red.</span></p>
 		</div>
 
-		<form id="applicationForm" action="#">
+		<form id="applicationForm" method="post">
 			<fieldset>
 				<legend>Personal Information:</legend>
 
-				<label>
+				<label for="lastName">
 					<span class="required">Last Name:</span>
 					<input type="text" name="lastName">
 				</label>
@@ -211,7 +207,9 @@
 					<textarea name="ctsExperience"></textarea>
 				</label>
 			</fieldset><!-- end candiate information-->
-			<input type="submit">
+
+			<input class="submit" type="submit" value="Submit"/>
+
 		</form><!--end application form-->
 
 		<footer>

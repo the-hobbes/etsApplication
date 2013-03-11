@@ -15,14 +15,17 @@
 
 				//get all text field inputs
 				var $textInputs = $('#applicationForm :input[type="text"]');
-				var textValues = {};
+				// var textValues = {};
 
-				//loop through each text input and store the value of it in an associative array(name:value)
+				//loop through each text input 
+				// (and store the value of it in an associative array(name:value) )?
 				$textInputs.each(function() {
-					textValues[this.name] = $(this).val();
-
-					if( $(this).prev().hasClass('required') ){
+					// textValues[this.name] = $(this).val();
+					if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
+						//if the input is required and empty, add a red background to it and display an error
 						console.log("required");
+						$(this).addClass('error');
+						// $(this).text("you fucked up");
 					}
 				});//end each loop for textInputs
 			});//end form submission handler
@@ -43,7 +46,7 @@
 				fields are marked in <span class="required">red.</span></p>
 		</div>
 
-		<form id= "applicationForm" method="post">
+		<form id="applicationForm" action="#">
 			<fieldset>
 				<legend>Personal Information:</legend>
 

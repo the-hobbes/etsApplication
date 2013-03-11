@@ -5,6 +5,30 @@
 		<meta name="description" content="">
 		
 		<link rel="stylesheet" href="css/style.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>
+		//run when the document has fully loaded
+		$(document).ready(function(){
+
+			//handle form submission events
+			$('#applicationForm').submit(function() {
+
+				//get all text field inputs
+				var $textInputs = $('#applicationForm :input[type="text"]');
+				var textValues = {};
+
+				//loop through each text input and store the value of it in an associative array(name:value)
+				$textInputs.each(function() {
+					textValues[this.name] = $(this).val();
+
+					if( $(this).prev().hasClass('required') ){
+						console.log("required");
+					}
+				});//end each loop for textInputs
+			});//end form submission handler
+		});
+		
+		</script>
 	</head>
 
 	<body>
@@ -19,7 +43,7 @@
 				fields are marked in <span class="required">red.</span></p>
 		</div>
 
-		<form method="post">
+		<form id= "applicationForm" method="post">
 			<fieldset>
 				<legend>Personal Information:</legend>
 
@@ -65,7 +89,7 @@
 				
 				<label>
 					<div class="required">You are eligible to work in the United States:</div>
-					<input type="radio" name="eligibility" value="true">True
+					<input type="radio" name="eligibility" value="true" checked="checked">True
 					<input type="radio" name="eligibility" value="false"> False
 				</label>		
 			</fieldset>
@@ -75,19 +99,19 @@
 
 				<label>
 					<div>Have you previously worked for UVM?</div>
-					<input type="radio" name="previousWork" value="yes">Yes
+					<input type="radio" name="previousWork" value="yes" checked="checked">Yes
 					<input type="radio" name="previousWork" value="no"> No
 				</label>
 
 				<label>
 					<div>Are you currently an Undergraduate student at UVM?</div>
-					<input type="radio" name="undergradStudent" value="yes">Yes
+					<input type="radio" name="undergradStudent" value="yes" checked="checked">Yes
 					<input type="radio" name="undergradStudent" value="no"> No
 				</label>
 
 				<label>
 					<div>Are you currently an Graduate student at UVM?</div>
-					<input type="radio" name="gradStudent" value="yes">Yes
+					<input type="radio" name="gradStudent" value="yes" checked="checked">Yes
 					<input type="radio" name="gradstudent" value="no"> No
 				</label>
 
@@ -142,7 +166,7 @@
 
 				<label>
 					<div>May we contact this employer?</div>
-					<input type="radio" name="contactEmployer" value="yes">Yes
+					<input type="radio" name="contactEmployer" value="yes" checked="checked">Yes
 					<input type="radio" name="contactEmployer" value="no"> No
 				</label>
 			</fieldset><!-- end Previous Employment-->

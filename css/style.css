@@ -64,8 +64,11 @@ textarea {
 	width:200px;
 	margin-bottom: 5px;
 }
-.required, .error{
+.required{
 	color: red;
+}
+.error{
+	background-color:red;
 }
 .odd{
 	background-color: green;

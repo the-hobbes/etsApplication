@@ -9,24 +9,36 @@
 <!--		<script type="text/javascript" src="scripts/jquery-validation-1.11.0/dist/jquery.validate.min.js"></script>-->
 		<script>
 		//run when the document has fully loaded
-		$(document).ready(function(){
+		// $(document).ready(function(){
 
-			handle form submission events
-			$('#applicationForm').submit(function() {
-				//get all text field inputs
-				var $textInputs = $('#applicationForm :input[type="text"]');
-				//loop through each text input 
-				$textInputs.each(function() {
-					//if the input is required and empty, add a red background to it and display an error
-					if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
-						console.log("required");
-						$(this).addClass('error');
-					}//end if
-				});//end each loop for textInputs
-			});//end form submission handler
+		// 	// handle form submission events
+		// 	$('#applicationForm').submit(function() {
+		// 		//get all text field inputs
+		// 		var $textInputs = $('#applicationForm :input[type="text"]');
+		// 		//loop through each text input 
+		// 		$textInputs.each(function() {
+		// 			//if the input is required and empty, add a red background to it and display an error
+		// 			if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
+		// 				console.log("required");
+		// 				$(this).addClass('error');
+		// 			}//end if
+		// 		});//end each loop for textInputs
+		// 	});//end form submission handler
 
-		});//end document ready
+		// });//end document ready
 
+		function validateForm(){
+			//get all text field inputs
+			var $textInputs = $('#applicationForm :input[type="text"]');
+			//loop through each text input 
+			$textInputs.each(function() {
+				//if the input is required and empty, add a red background to it and display an error
+				if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
+					console.log("required");
+					$(this).addClass('error');
+				}//end if
+			});//end each loop for textInputs
+		}
 		</script>
 	</head>
 
@@ -42,7 +54,7 @@
 				fields are marked in <span class="required">red.</span></p>
 		</div>
 
-		<form id="applicationForm" method="post">
+		<form id="applicationForm" action="">
 			<fieldset>
 				<legend>Personal Information:</legend>
 
@@ -208,7 +220,7 @@
 				</label>
 			</fieldset><!-- end candiate information-->
 
-			<input class="submit" type="submit" value="Submit"/>
+			<input class="submit" type="button" value="Submit" onclick="validateForm()"/>
 
 		</form><!--end application form-->
 

@@ -10,21 +10,6 @@
 		<script>
 		//run when the document has fully loaded
 		// $(document).ready(function(){
-
-		// 	// handle form submission events
-		// 	$('#applicationForm').submit(function() {
-		// 		//get all text field inputs
-		// 		var $textInputs = $('#applicationForm :input[type="text"]');
-		// 		//loop through each text input 
-		// 		$textInputs.each(function() {
-		// 			//if the input is required and empty, add a red background to it and display an error
-		// 			if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
-		// 				console.log("required");
-		// 				$(this).addClass('error');
-		// 			}//end if
-		// 		});//end each loop for textInputs
-		// 	});//end form submission handler
-
 		// });//end document ready
 
 		function validateForm(){
@@ -37,7 +22,13 @@
 					console.log("required");
 					$(this).addClass('error');
 				}//end if
+				else{
+					$(this).removeClass('error');
+				}
 			});//end each loop for textInputs
+
+			//go back to the top of the page when all done
+			$("html, body").animate({ scrollTop: 0 }, "slow");
 		}
 		</script>
 	</head>
@@ -54,7 +45,7 @@
 				fields are marked in <span class="required">red.</span></p>
 		</div>
 
-		<form id="applicationForm" action="">
+		<form id="applicationForm" action="#">
 			<fieldset>
 				<legend>Personal Information:</legend>
 

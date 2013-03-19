@@ -70,6 +70,12 @@ textarea {
 .error{
 	background-color:red;
 }
+.errorMessage{
+	position:absolute; 
+	float: right;
+	margin-left:50px;
+	font-size:11px;
+}
 .odd{
 	background-color: green;
 }

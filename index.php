@@ -21,6 +21,7 @@
 				if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
 					console.log("required");
 					$(this).addClass('error');
+					$(this).after('<span class="errorMessage">**This Field is Required**</span>');
 				}//end if
 				else{
 					$(this).removeClass('error');
@@ -30,6 +31,27 @@
 			//go back to the top of the page when all done
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 		}
+
+		function lookup(arg){
+			var value = arg.value;
+			var thing = $(arg); //convert to jquery object
+			console.log(value);
+
+			if (value.length < 1){
+				//is it empty? it shouldn't be. show an error
+				thing.addClass('error');
+				thing.after('<span class="errorMessage">**This Field is Required**</span>');
+				// thing.addClass('error:after');
+			}
+			else{
+				//there is stuff in there. take away the error class and the error message
+				thing.removeClass('error');
+				thing.next().remove();
+			}
+		}
+
+		// assign each input a class called whatever
+		// $('.whatever').keyup(function(){ $(this).whatever... do stuff})
 		</script>
 	</head>
 
@@ -51,42 +73,42 @@
 
 				<label for="lastName">
 					<span class="required">Last Name:</span>
-					<input type="text" name="lastName">
+					<input type="text" name="lastName"  onkeyup="lookup(this);">
 				</label>
 
 				<label>
 					<span class="required">First Name:</span>
-					<input type="text" name="firstName">
+					<input type="text" name="firstName" onkeyup="lookup(this);">
 				</label>
 
 				<label>
 					<span class="required">Middle Initial:</span>
-					<input type="text" name="middleInitial">
+					<input type="text" name="middleInitial" onkeyup="lookup(this);">
 				</label>
 
 				<label>
 					<span class="required">Street Address:</span>
-					<input type="text" name="lastName">
+					<input type="text" name="lastName" onkeyup="lookup(this);">
 				</label>
 
 				<label>
 					<span class="required">Zip Code:</span>
-					<input type="text" name="zipCode">
+					<input type="text" name="zipCode" onkeyup="lookup(this);">
 				</label>
 
 				<label>
 					<span class="required">Email Address:</span>
-					<input type="text" name="emailAddress">
+					<input type="text" name="emailAddress" onkeyup="lookup(this);">
 				</label>				
 
 				<label>
 					<span class="required">UVM NetID:</span>
-					<input type="text" name="netId">
+					<input type="text" name="netId" onkeyup="lookup(this);">
 				</label>
 
 				<label>
 					<span class="required">UVM Major:</span>
-					<input type="text" name="major">
+					<input type="text" name="major" onkeyup="lookup(this);">
 				</label><!--end UVM Information-->	
 				
 				<label>
@@ -124,7 +146,7 @@
 
 				<label>
 					<span class="required">What is your expected date of graduation?</span>
-					<input type="text" name="gradDate">
+					<input type="text" name="gradDate" onkeyup="lookup(this);">
 				</label>
 
 				<label>

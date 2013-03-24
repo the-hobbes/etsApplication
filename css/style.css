@@ -65,16 +65,17 @@ textarea {
 	margin-bottom: 5px;
 }
 .required{
-	color: red;
+	/*color: red;*/
 }
 .error{
-	background-color:red;
+	background-color:#FF3030;
 }
 .errorMessage{
 	position:absolute; 
 	float: right;
 	margin-left:50px;
 	font-size:11px;
+	color:red;
 }
 .odd{
 	background-color: green;

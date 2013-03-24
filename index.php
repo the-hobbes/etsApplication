@@ -1,9 +1,6 @@
 <!doctype html>
 	<head>
-		<meta charset="utf-8">
-		<title>ETS Student Technician Application</title>
-		<meta name="description" content="">
-		
+		<title>ETS Student Technician Application</title>		
 		<link rel="stylesheet" href="css/style.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!--		<script type="text/javascript" src="scripts/jquery-validation-1.11.0/dist/jquery.validate.min.js"></script>-->
@@ -12,6 +9,12 @@
 		// $(document).ready(function(){
 		// });//end document ready
 
+		/*
+			validateForm
+			Used to validate the entire form when submit its clicked. 
+			If not valid, will rerender the page with errors.
+			If indeed valid, forward the contents of the submission on to the server. 
+		*/
 		function validateForm(){
 			//get all text field inputs
 			var $textInputs = $('#applicationForm :input[type="text"]');
@@ -25,6 +28,16 @@
 				}//end if
 				else{
 					$(this).removeClass('error');
+
+					//if the source object is an email, check to see if it is valid
+					if($(this).attr('name') == "emailAddress"){
+					isValid = isEmail($(this).value);
+					if($(this) == true)
+						$(this).removeClass('error');
+					else
+						$(this).addClass('error');
+						$(this).after('<span class="errorMessage">** Not a valid email **</span>');
+					}
 				}
 			});//end each loop for textInputs
 
@@ -32,26 +45,55 @@
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 		}
 
+		/*
+			lookup
+			Used to validate the required parts of the form, and called on each keyup in the form.
+			If the item calling the lookup is valid, then nothing will happen. If it is not, then it will be turned red.
+		*/
 		function lookup(arg){
 			var value = arg.value;
-			var thing = $(arg); //convert to jquery object
-			console.log(value);
+			var sourceObject = $(arg); //convert to jquery object
+
+			// console.log(value);
+			// console.log(sourceObject.attr('name'));
 
 			if (value.length < 1){
 				//is it empty? it shouldn't be. show an error
-				thing.addClass('error');
-				thing.after('<span class="errorMessage">**This Field is Required**</span>');
-				// thing.addClass('error:after');
+				sourceObject.addClass('error');
+				// sourceObject.after('<span class="errorMessage">**This Field is Required**</span>');
 			}
 			else{
 				//there is stuff in there. take away the error class and the error message
-				thing.removeClass('error');
-				thing.next().remove();
-			}
-		}
+				// sourceObject.next().remove();
+				sourceObject.removeClass('error');
 
-		// assign each input a class called whatever
-		// $('.whatever').keyup(function(){ $(this).whatever... do stuff})
+				//if the source object is an email, check to see if it is valid
+				if(sourceObject.attr('name') == "emailAddress"){
+					isValid = isEmail(value);
+					if(isValid == true)
+						sourceObject.removeClass('error');
+					else
+						sourceObject.addClass('error');
+				}
+
+				//if the source object is a zipcode, check to see if it is valid
+				if (arg.value != arg.value.replace(/[^0-9,-\.]/g, '')) {
+					arg.value = arg.value.replace(/[^0-9,-\.]/g, '');
+					sourceObject.addClass('error');
+				}
+				else
+					sourceObject.removeClass('error');
+					
+			}//end else
+		}//end lookup
+		/*
+			isEmail
+			Uses regular expressions to determine if the email is in a valid format. 
+		*/
+		function isEmail(email) {
+		  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		  return regex.test(email);
+		}
 		</script>
 	</head>
 
@@ -63,56 +105,56 @@
 		<hr>
 
 		<div id="instructions">
-			<p>Please fill out the following form to be considered for an ETS Student technician position. Note that required
-				fields are marked in <span class="required">red.</span></p>
+			<p>Please fill out the following form to be considered for anETS Student technician position. Note that required
+				fields are marked in by  <span style="color:#FF3030;">**</span>.</p>
 		</div>
 
 		<form id="applicationForm" action="#">
 			<fieldset>
 				<legend>Personal Information:</legend>
 
-				<label for="lastName">
-					<span class="required">Last Name:</span>
-					<input type="text" name="lastName"  onkeyup="lookup(this);">
-				</label>
-
 				<label>
-					<span class="required">First Name:</span>
-					<input type="text" name="firstName" onkeyup="lookup(this);">
-				</label>
-
-				<label>
-					<span class="required">Middle Initial:</span>
-					<input type="text" name="middleInitial" onkeyup="lookup(this);">
-				</label>
-
-				<label>
-					<span class="required">Street Address:</span>
+					<span class="required"><span style="color:#FF3030;">**</span>Last Name:</span>
 					<input type="text" name="lastName" onkeyup="lookup(this);">
 				</label>
 
 				<label>
-					<span class="required">Zip Code:</span>
+					<span class="required"><span style="color:#FF3030;">**</span>First Name:</span>
+					<input type="text" name="firstName" onkeyup="lookup(this);">
+				</label>
+
+				<label>
+					<span class="required"><span style="color:#FF3030;">**</span>Middle Initial:</span>
+					<input type="text" name="middleInitial" onkeyup="lookup(this);">
+				</label>
+
+				<label>
+					<span class="required"><span style="color:#FF3030;">**</span>Street Address:</span>
+					<input type="text" name="lastName" onkeyup="lookup(this);">
+				</label>
+
+				<label>
+					<span class="required"><span style="color:#FF3030;">**</span>Zip Code:</span>
 					<input type="text" name="zipCode" onkeyup="lookup(this);">
 				</label>
 
 				<label>
-					<span class="required">Email Address:</span>
+					<span class="required"><span style="color:#FF3030;">**</span>Email Address:</span>
 					<input type="text" name="emailAddress" onkeyup="lookup(this);">
 				</label>				
 
 				<label>
-					<span class="required">UVM NetID:</span>
+					<span class="required"><span style="color:#FF3030;">**</span>UVM NetID:</span>
 					<input type="text" name="netId" onkeyup="lookup(this);">
 				</label>
 
 				<label>
-					<span class="required">UVM Major:</span>
+					<span class="required"><span style="color:#FF3030;">**</span>UVM Major:</span>
 					<input type="text" name="major" onkeyup="lookup(this);">
 				</label><!--end UVM Information-->	
 				
 				<label>
-					<div class="required">You are eligible to work in the United States:</div>
+					<div class="required"><span style="color:#FF3030;">**</span>You are eligible to work in the United States:</div>
 					<input type="radio" name="eligibility" value="true" checked="checked">True
 					<input type="radio" name="eligibility" value="false"> False
 				</label>		
@@ -145,7 +187,7 @@
 				</label>
 
 				<label>
-					<span class="required">What is your expected date of graduation?</span>
+					<span class="required"><span style="color:#FF3030;">**</span>What is your expected date of graduation?</span>
 					<input type="text" name="gradDate" onkeyup="lookup(this);">
 				</label>
 

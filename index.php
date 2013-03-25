@@ -3,98 +3,7 @@
 		<title>ETS Student Technician Application</title>		
 		<link rel="stylesheet" href="css/style.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<!--		<script type="text/javascript" src="scripts/jquery-validation-1.11.0/dist/jquery.validate.min.js"></script>-->
-		<script>
-		//run when the document has fully loaded
-		// $(document).ready(function(){
-		// });//end document ready
-
-		/*
-			validateForm
-			Used to validate the entire form when submit its clicked. 
-			If not valid, will rerender the page with errors.
-			If indeed valid, forward the contents of the submission on to the server. 
-		*/
-		function validateForm(){
-			//get all text field inputs
-			var $textInputs = $('#applicationForm :input[type="text"]');
-			//loop through each text input 
-			$textInputs.each(function() {
-				//if the input is required and empty, add a red background to it and display an error
-				if( $(this).prev().hasClass('required') && ($(this).val().length < 1) ){
-					console.log("required");
-					$(this).addClass('error');
-					$(this).after('<span class="errorMessage">**This Field is Required**</span>');
-				}//end if
-				else{
-					$(this).removeClass('error');
-
-					//if the source object is an email, check to see if it is valid
-					if($(this).attr('name') == "emailAddress"){
-					isValid = isEmail($(this).value);
-					if($(this) == true)
-						$(this).removeClass('error');
-					else
-						$(this).addClass('error');
-						$(this).after('<span class="errorMessage">** Not a valid email **</span>');
-					}
-				}
-			});//end each loop for textInputs
-
-			//go back to the top of the page when all done
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-		}
-
-		/*
-			lookup
-			Used to validate the required parts of the form, and called on each keyup in the form.
-			If the item calling the lookup is valid, then nothing will happen. If it is not, then it will be turned red.
-		*/
-		function lookup(arg){
-			var value = arg.value;
-			var sourceObject = $(arg); //convert to jquery object
-
-			// console.log(value);
-			// console.log(sourceObject.attr('name'));
-
-			if (value.length < 1){
-				//is it empty? it shouldn't be. show an error
-				sourceObject.addClass('error');
-				// sourceObject.after('<span class="errorMessage">**This Field is Required**</span>');
-			}
-			else{
-				//there is stuff in there. take away the error class and the error message
-				// sourceObject.next().remove();
-				sourceObject.removeClass('error');
-
-				//if the source object is an email, check to see if it is valid
-				if(sourceObject.attr('name') == "emailAddress"){
-					isValid = isEmail(value);
-					if(isValid == true)
-						sourceObject.removeClass('error');
-					else
-						sourceObject.addClass('error');
-				}
-
-				//if the source object is a zipcode, check to see if it is valid
-				if (arg.value != arg.value.replace(/[^0-9,-\.]/g, '')) {
-					arg.value = arg.value.replace(/[^0-9,-\.]/g, '');
-					sourceObject.addClass('error');
-				}
-				else
-					sourceObject.removeClass('error');
-					
-			}//end else
-		}//end lookup
-		/*
-			isEmail
-			Uses regular expressions to determine if the email is in a valid format. 
-		*/
-		function isEmail(email) {
-		  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		  return regex.test(email);
-		}
-		</script>
+		<script src="scripts/clientSideValidation.js"></script>
 	</head>
 
 	<body>
@@ -130,7 +39,7 @@
 
 				<label>
 					<span class="required"><span style="color:#FF3030;">**</span>Street Address:</span>
-					<input type="text" name="lastName" onkeyup="lookup(this);">
+					<input type="text" name="streetAddress" onkeyup="lookup(this);">
 				</label>
 
 				<label>
@@ -252,7 +161,7 @@
 
 				<label>
 					<span>Reference Relationship:</span>
-					<input type="text" name="referencePhone">
+					<input type="text" name="referenceRelation">
 				</label>
 			</fieldset><!-- end References-->
 
@@ -275,7 +184,7 @@
 				</label>
 			</fieldset><!-- end candiate information-->
 
-			<input class="submit" type="button" value="Submit" onclick="validateForm()"/>
+			<input class="submit" type="button" value="Submit" name="submitted" onclick="validateForm()"/>
 
 		</form><!--end application form-->
 

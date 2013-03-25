@@ -39,17 +39,18 @@ function validateForm(){
 
 	// if there are no errors, then the form is valid, client side. Pass it to server for validation
 	if(errors == 0){
-		
 
-		// NOT WORKING, circular structure issue. 
-		//http://stackoverflow.com/questions/11616630/json-stringify-avoid-typeerror-converting-circular-structure-to-json
-		newJson = [];
-		for (var i = 0; i <= 18; i++) {
-		    newJson.push($textInputs[i]);
-		};
-		console.log(newJson);
+		var dict = [];
+		$textInputs.each(function() {
+			// console.log($(this).attr('name'));
+		    dict.push({
+			    key:   $(this).attr('name'),
+			    value: $(this).attr('value')
+			});
+		});
 
-		$.post("php/formProcessor.php", { data: JSON.stringify(newJson) })
+		// POST to the server
+		$.post("php/formProcessor.php", { data: dict} )
 
 		//success function
 		.done(function(data) {

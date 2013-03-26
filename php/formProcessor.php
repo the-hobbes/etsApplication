@@ -15,15 +15,11 @@ $zipCode = $clientInfo[4]['value'];
 $email=$clientInfo[5]['value'];
 $netID = $clientInfo[6]['value'];
 $major = $clientInfo[7]['value'];
-$usEligible = $clientInfo[8]['value'];
-$usEligible2 = $clientInfo[9]['value'];
+$usEligible = parseRadioButton($clientInfo[8], $clientInfo[9]); // which button was selected?
 
-$previouslyWorked = $clientInfo[10]['value'];
-$previouslyWorked2 = $clientInfo[11]['value'];
-$undergradStudent = $clientInfo[12]['value'];
-$undergradStudent2 = $clientInfo[13]['value'];
-$gradStudent = $clientInfo[14]['value'];
-$gradStudent2 = $clientInfo[15]['value'];
+$previouslyWorked = parseRadioButton($clientInfo[10], $clientInfo[11]);
+$undergradStudent = parseRadioButton($clientInfo[12], $clientInfo[13]);
+$gradStudent = parseRadioButton($clientInfo[14], $clientInfo[15]);
 $creditNumber = $clientInfo[16]['value'];
 $graduationDate = $clientInfo[17]['value'];
 $workStudyAmount = $clientInfo[18]['value'];
@@ -34,8 +30,7 @@ $employerPhone = $clientInfo[21]['value'];
 $payRate = $clientInfo[22]['value'];
 $hoursWorked = $clientInfo[23]['value'];
 $jobDuties = $clientInfo[24]['value'];
-$mayWeContact = $clientInfo[25]['value'];
-$mayWeContact2 = $clientInfo[26]['value'];
+$mayWeContact = parseRadioButton($clientInfo[25], $clientInfo[26]);
 
 $referenceName = $clientInfo[27]['value'];
 $referencePhone = $clientInfo[28]['value'];
@@ -145,46 +140,60 @@ function validateEmail($fieldValue){
 }
 
 /**
+ * parseRadioButton
+ * Used to check to see which of the two radio buttons was actually selected by the user, as indicated by the 'checked' value.
+**/ 
+function parseRadioButton($button1, $button2){
+	if($button1['checked']){
+		return $button1['value'];
+	}
+	else{
+		return $button2['value'];
+	}
+}
+
+/**
  * sendEmail
  * Used to send the data the user has filled out to the managers. 
 **/ 
 function sendEmail(){
+	global $firstName, $middleInitial, $lastName, $streetAddress, $zipCode, $email, $netID, $major, $usEligible, $previouslyWorked, $undergradStudent, $gradStudent, $creditNumber, $graduationDate, $workStudyAmount, $employerName, $employerAddress, $employerPhone, $payRate, $hoursWorked, $jobDuties, $mayWeContact, $referenceName, $referenceRelation, $referencePhone, $goodCandidate, $prevCustExperience, $prevComputerTroubleshooting;
 	//get date and time
-    $Todays_Date=strftime("%x");
-    $Current_Time=strftime("%X");
+    $Todays_Date = strftime("%x");
+    $Current_Time = strftime("%X");
 
 	$to .= "pvendevi@uvm.edu" . ", " . "phelan.vendeville@gmail.com";
 	$subject = "Application for employment, submitted on " . $Todays_Date . " at " . $Current_Time;
 
 	// craft the message
 	$message = "<html><head><title>Confirmation</title></head><body>";
-	$message = "<p>Applicant Name: " . $firstName . " " . $middleInitial . " " . $lastName . "</p>";
-	$message = "<p>Applicant Physical Address: " . $streetAddress . ", " . $zipCode . "</p>";
-	$message = "<p>Applicant Email Address: " . $email . "</p>";
-	$message = "<p>UVM NetID: " . $netID . ", UVM Major: " . $major . "</p>";
-	$message = "<p>Eligible to work in the United States? " . $usEligible . "</p>"; 
-	$message = "<p>Previously worked at UVM? " . $previouslyWorked . "</p>";
-	$message = "<p>Currently an Undergraduate Student? " . $undergradStudent . "</p>";
-	$message = "<p>Currently a Graduate Student " . $gradStudent . "</p>";
-	$message = "<p>Number of Credits Enrolled: " . $creditNumber . "</p>";
-	$message = "<p>Expected data of Graduation: " . $graduationDate . "</p>";
-	$message = "<p>Work study amount: " . $workStudyAmount . "</p>";
-	$message = "<p>Previous employment: </p>";
-	$message = "<p>Employer Name: " . $employerName . "</p>";
-	$message = "<p>Employer Address: " . $employerAddress . "</p>";
-	$message = "<p>Employer Phone Number: " . $employerPhone . "</p>";
-	$message = "<p>Pay Rate: " . $payRate . "</p>";
-	$message = "<p>Hours worked per week: " . $hoursWorked . "</p>";
-	$message = "<p>Job Duties: " . $jobDuties . "</p>";
-	$message = "<p>May we contact employer? " . $mayWeContact . "</p>";
-	$message = "<p>References: </p>";
-	$message = "<p>Reference Name: " . $referenceName . "</p>";
-	$message = "<p>Reference Phone number: " .$referencePhone . "</p>";
-	$message = "<p>Reference Relationship: " . $referenceRelation . "</p>";
-	$message = "<p>Candidate Information: </p>";
-	$message = "<p>What makes you a good candidate: " . $goodCandidate . "</p>";
-	$message = "<p>Previous Customer Experience: " . $prevCustExperience . "</p>";
-	$message = "<p>Previous computer troubleshooting experience: " . $prevComputerTroubleshooting . "</p>";
+	$message .= "<p>Applicant Name: " . $firstName . " " . $middleInitial . " " . $lastName . "</p>";
+	$message .= "<p>Applicant Physical Address: " . $streetAddress . ", " . $zipCode . "</p>";
+	$message .= "<p>Applicant Email Address: " . $email . "</p>";
+	$message .= "<p>UVM NetID: " . $netID . ", UVM Major: " . $major . "</p>";
+	$message .= "<p>Eligible to work in the United States? " . $usEligible . "</p>"; 
+	$message .= "<p>Previously worked at UVM? " . $previouslyWorked . "</p>";
+	$message .= "<p>Currently an Undergraduate Student? " . $undergradStudent . "</p>";
+	$message .= "<p>Currently a Graduate Student " . $gradStudent . "</p>";
+	$message .= "<p>Number of Credits Enrolled: " . $creditNumber . "</p>";
+	$message .= "<p>Expected data of Graduation: " . $graduationDate . "</p>";
+	$message .= "<p>Work study amount: " . $workStudyAmount . "</p>";
+	$message .= "<p>Previous employment: </p>";
+	$message .= "<p>Employer Name: " . $employerName . "</p>";
+	$message .= "<p>Employer Address: " . $employerAddress . "</p>";
+	$message .= "<p>Employer Phone Number: " . $employerPhone . "</p>";
+	$message .= "<p>Pay Rate: " . $payRate . "</p>";
+	$message .= "<p>Hours worked per week: " . $hoursWorked . "</p>";
+	$message .= "<p>Job Duties: " . $jobDuties . "</p>";
+	$message .= "<p>May we contact employer? " . $mayWeContact . "</p>";
+	$message .= "<p>References: </p>";
+	$message .= "<p>Reference Name: " . $referenceName . "</p>";
+	$message .= "<p>Reference Phone number: " .$referencePhone . "</p>";
+	$message .= "<p>Reference Relationship: " . $referenceRelation . "</p>";
+	$message .= "<p>Candidate Information: </p>";
+	$message .= "<p>What makes you a good candidate: " . $goodCandidate . "</p>";
+	$message .= "<p>Previous Customer Experience: " . $prevCustExperience . "</p>";
+	$message .= "<p>Previous computer troubleshooting experience: " . $prevComputerTroubleshooting . "</p>";
 	$message .= "</body></html>";
 
 	// Content-type headers

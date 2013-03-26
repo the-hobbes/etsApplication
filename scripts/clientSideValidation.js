@@ -46,7 +46,8 @@ function validateForm(){
 			// console.log($(this).attr('name'));
 		    dict.push({
 			    key:   $(this).attr('name'),
-			    value: $(this).attr('value')
+			    value: $(this).attr('value'),
+			    checked: $(this).attr('checked')
 			});
 		});
 

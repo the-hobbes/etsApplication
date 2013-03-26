@@ -7,6 +7,9 @@
 	</head>
 
 	<body>
+		<?php include("php/useLdap.php");?>
+		<?php $userName= getenv('REMOTE_USER');?>
+		<p><?php useLDAP($userName); ?></p>
 		<header>
 			<a href="http://www.uvm.edu/it/help/?Page=CDCjobs.html" target="_blank"><h1>Student Technician Application</h1></a>
 		</header>

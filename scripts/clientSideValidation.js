@@ -41,7 +41,8 @@ function validateForm(){
 	if(errors == 0){
 
 		var dict = [];
-		$textInputs.each(function() {
+		var $allInputs = $('#applicationForm :input');
+		$allInputs.each(function() {
 			// console.log($(this).attr('name'));
 		    dict.push({
 			    key:   $(this).attr('name'),
@@ -49,6 +50,7 @@ function validateForm(){
 			});
 		});
 
+		dict = JSON.stringify(dict);
 		// POST to the server
 		$.post("php/formProcessor.php", { data: dict} )
 
@@ -106,6 +108,6 @@ function lookup(arg){
 */
 function isEmail(email) {
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  console.log(regex.test(email));
+  // console.log(regex.test(email));
   return regex.test(email);
 }

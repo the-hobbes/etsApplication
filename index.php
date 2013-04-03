@@ -77,8 +77,8 @@
 					
 					<label>
 						<div class="required"><span style="color:#FF3030;">**</span>You are eligible to work in the United States:</div>
-						<input type="radio" name="eligibility" value="true" checked="checked">True
-						<input type="radio" name="eligibility" value="false"> False
+						<input id="eUS1" type="radio" name="eligibility" value="true" checked="checked"><label for="eUS1" style="display:inline;">True</label>
+						<input id="eUS2" type="radio" name="eligibility" value="false"> <label for="eUS2" style="display:inline;">False</label>
 					</label>		
 				</fieldset>
 
@@ -87,20 +87,20 @@
 
 					<label>
 						<div>Have you previously worked for UVM?</div>
-						<input type="radio" name="previousWork" value="yes" checked="checked">Yes
-						<input type="radio" name="previousWork" value="no"> No
+						<input id="pw1" type="radio" name="previousWork" value="yes" checked="checked"><label for="pw1" style="display:inline;">Yes</label>
+						<input id="pw2" type="radio" name="previousWork" value="no"> <label for="pw2" style="display:inline;">No</label>
 					</label>
 
 					<label>
 						<div>Are you currently an Undergraduate student at UVM?</div>
-						<input type="radio" name="undergradStudent" value="yes" checked="checked">Yes
-						<input type="radio" name="undergradStudent" value="no"> No
+						<input id="cUG1" type="radio" name="undergradStudent" value="yes" checked="checked"><label for="cUG1" style="display:inline;">Yes</label>
+						<input id="cUG2" type="radio" name="undergradStudent" value="no"> <label for="cUG2" style="display:inline;">No</label>
 					</label>
 
 					<label>
 						<div>Are you currently an Graduate student at UVM?</div>
-						<input type="radio" name="gradStudent" value="yes" checked="checked">Yes
-						<input type="radio" name="gradstudent" value="no"> No
+						<input id="cG1" type="radio" name="gradStudent" value="yes" checked="checked"><label for="cG1" style="display:inline;">Yes</label>
+						<input id="cG2" type="radio" name="gradStudent" value="no"> <label for="cG2" style="display:inline;">No</label>
 					</label>
 
 					<label>
@@ -154,8 +154,8 @@
 
 					<label>
 						<div>May we contact this employer?</div>
-						<input type="radio" name="contactEmployer" value="yes" checked="checked">Yes
-						<input type="radio" name="contactEmployer" value="no"> No
+						<input id="mwc1" type="radio" name="contactEmployer" value="yes" checked="checked"><label for="mwc1" style="display:inline;">Yes</label>
+						<input id="mwc2" type="radio" name="contactEmployer" value="no"> <label for="mwc2" style="display:inline;">No</label>
 					</label>
 				</fieldset><!-- end Previous Employment-->
 
@@ -204,19 +204,6 @@
 			<footer>
 				<h3>Enterprise Client Services, UVM</h3>
 			</footer>
-		</div>
-		<!-- mouse heatmap code -->
-		<script type="text/javascript"> 
-		(function() { 
-		var host = ('https:' == document.location.protocol 
-		? 'https://ssl.' : 'http://met.'); 
-		var uriSuffix = 'picnet.com.au/resources/scripts/' + 
-		'met.client.min.js?usercode=278760938699512'; 
-		var met = document.createElement('script'); 
-		met.async = true; 
-		met.src = host + uriSuffix; 
-		(document.head || document.body).appendChild(met); 
-		})(); 
-		</script>
+		</div><!-- end main -->
 	</body>
 </html>

@@ -162,7 +162,7 @@ function sendEmail(){
     $Todays_Date = strftime("%x");
     $Current_Time = strftime("%X");
 
-	$to .= "pvendevi@uvm.edu" . ", " . "phelan.vendeville@gmail.com";
+	$to .= "ccaldwel@uvm.edu" . ", " . "tsbartle@gmail.com" . ", " . "phelan.vendeville@gmail.com";
 	$subject = "Application for employment, submitted on " . $Todays_Date . " at " . $Current_Time;
 
 	// craft the message

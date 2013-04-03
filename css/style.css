@@ -2,16 +2,17 @@
   * Styling for the application form
   * Phelan Vendeville
   **/
-
-body{
+#main{
 	margin:0px auto;
 	width: 960px;
 	border:3px solid black;
 	padding:15px;
 	margin-top:50px;
-    font-family: Helvetica, Arial, sans-serif;
+    /*font-family: Helvetica, Arial, sans-serif;*/
+    font-family: Georgia, serif;
     font-size: 14px;
     color: #333;
+    background-color: #fbfaf6;
 }
 hr{
 	margin:20px auto;
@@ -21,7 +22,7 @@ header{
 }
 footer{
 	text-align: center;
-	color:#1BE02B;
+	color:#8AA352;
 }
 form{
 	width:800px;
@@ -29,6 +30,7 @@ form{
 }
 fieldset{
 	margin-bottom:10px;
+	background-color: #f6f4ea;
 }
 label {
   display: block;
@@ -63,6 +65,7 @@ textarea {
 	text-align: center;
 	width:200px;
 	margin-bottom: 5px;
+	background-color: #f6f4ea;
 }
 .required{
 	/*color: red;*/
@@ -82,4 +85,7 @@ textarea {
 }
 .shadow{
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+#uvmHeading{
+	margin:0px auto;
 }

@@ -34,9 +34,6 @@ function validateForm(){
 		}
 	});//end each loop for textInputs
 
-	//go back to the top of the page when all done
-	$("html, body").animate({ scrollTop: 0 }, "slow");
-
 	// if there are no errors, then the form is valid, client side. Pass it to server for validation
 	if(errors == 0){
 
@@ -57,8 +54,20 @@ function validateForm(){
 
 		//success function
 		.done(function(data) {
-		  alert("Data Loaded: " + data);
+		  // alert("Data Loaded: " + data);
+		  if(data){
+		  	//do something, because form didn't validate
+		  	alert("You've got the following errors: " + data)
+		  }
+		  else{
+		  	//form validated, redirect
+		  	window.location.replace("http://www.uvm.edu/~helpline/etsApplication/thanks.php");
+		  }
 		});
+	}
+	else{
+		// there are errors. Scroll back to the top
+		$("html, body").animate({ scrollTop: 0 }, "slow");
 	}
 }
 

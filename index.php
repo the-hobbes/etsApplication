@@ -10,189 +10,213 @@
 		<?php include("php/useLdap.php");?>
 		<?php $userName= getenv('REMOTE_USER');?>
 		<p><?php useLDAP($userName); ?></p>
-		<header>
-			<a href="http://www.uvm.edu/it/help/?Page=CDCjobs.html" target="_blank"><h1>Student Technician Application</h1></a>
-		</header>
-		
-		<hr>
+		<div id="main">
+			<table id="uvmHeading" width="600" cellpadding="0" cellspacing="0" style="font-family: arial,sans-serif; text-align:center; color:#fff;" >
+			  <tr>
+			    <td style="width:90px"><a href="http://www.uvm.edu"><img moz-do-not-send="true" src="http://www.uvm.edu/www/images/templates/tower2010.gif" width="62" height="74" alt="UVM Tower" border="0" style="margin-bottom:-20px; border:1px solid #fff; z-index:100;"></a></td>
+			    <td valign="bottom" style="text-align:left; padding-bottom:5px;"><img moz-do-not-send="true" src="http://www.uvm.edu/www/images/templates/uvmlogo-words.gif" width="290" height="31" alt="The University of Vermont"></td>
+			    <td>&nbsp;</td>
+			  </tr>
+			  <tr bgcolor="#8AA352">
+			    <td bgcolor="#8AA352" style="padding-bottom: .6em;padding-top:.6em;">&nbsp;</td>
+			    <td  style="width:340px; text-align:left; text-transform:uppercase; font-size:11px;">Enterprise Client Services</td>
+			    <td bgcolor="#8AA352" style="text-transform:uppercase; text-align:right; padding-left:10px; padding-right:5px; font-size:11px;"><a href="http://www.uvm.edu/it/help/?Page=CDCjobs.html" target="_blank">Student Application</td>
+			  </tr>
+			</table>
 
-		<div id="instructions">
-			<p>Please fill out the following form to be considered for anETS Student technician position. Note that required
-				fields are marked in by  <span style="color:#FF3030;">**</span>.</p>
-		</div>
+			<hr>
 
-		<form id="applicationForm" action="#">
-			<fieldset>
-				<legend>Personal Information:</legend>
+			<div id="instructions">
+				<p>Please fill out the following form to be considered for anETS Student technician position. Note that required
+					fields are marked in by  <span style="color:#FF3030;">**</span>.</p>
+			</div>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>Last Name:</span>
-					<input type="text" name="lastName" onkeyup="lookup(this);">
-				</label>
+			<form id="applicationForm" action="#">
+				<fieldset>
+					<legend>Personal Information:</legend>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>First Name:</span>
-					<input type="text" name="firstName" onkeyup="lookup(this);">
-				</label>
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>Last Name:</span>
+						<input type="text" name="lastName" onkeyup="lookup(this);" value="<?php echo $lastName; ?>">
+					</label>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>Middle Initial:</span>
-					<input type="text" name="middleInitial" onkeyup="lookup(this);">
-				</label>
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>First Name:</span>
+						<input type="text" name="firstName" onkeyup="lookup(this);" value="<?php echo $firstName; ?>">
+					</label>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>Street Address:</span>
-					<input type="text" name="streetAddress" onkeyup="lookup(this);">
-				</label>
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>Middle Initial:</span>
+						<input type="text" name="middleInitial" onkeyup="lookup(this);">
+					</label>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>Zip Code:</span>
-					<input type="text" name="zipCode" onkeyup="lookup(this);">
-				</label>
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>Street Address:</span>
+						<input type="text" name="streetAddress" onkeyup="lookup(this);">
+					</label>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>Email Address:</span>
-					<input type="text" name="emailAddress" onkeyup="lookup(this);">
-				</label>				
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>Zip Code:</span>
+						<input type="text" name="zipCode" onkeyup="lookup(this);">
+					</label>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>UVM NetID:</span>
-					<input type="text" name="netId" onkeyup="lookup(this);">
-				</label>
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>Email Address:</span>
+						<input type="text" name="emailAddress" onkeyup="lookup(this);">
+					</label>				
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>UVM Major:</span>
-					<input type="text" name="major" onkeyup="lookup(this);">
-				</label><!--end UVM Information-->	
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>UVM NetID:</span>
+						<input type="text" name="netId" onkeyup="lookup(this);" value="<?php echo $netID; ?>">
+					</label>
+
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>UVM Major:</span>
+						<input type="text" name="major" onkeyup="lookup(this);">
+					</label><!--end UVM Information-->	
+					
+					<label>
+						<div class="required"><span style="color:#FF3030;">**</span>You are eligible to work in the United States:</div>
+						<input type="radio" name="eligibility" value="true" checked="checked">True
+						<input type="radio" name="eligibility" value="false"> False
+					</label>		
+				</fieldset>
+
+				<fieldset>
+					<legend>UVM Specific Information</legend>
+
+					<label>
+						<div>Have you previously worked for UVM?</div>
+						<input type="radio" name="previousWork" value="yes" checked="checked">Yes
+						<input type="radio" name="previousWork" value="no"> No
+					</label>
+
+					<label>
+						<div>Are you currently an Undergraduate student at UVM?</div>
+						<input type="radio" name="undergradStudent" value="yes" checked="checked">Yes
+						<input type="radio" name="undergradStudent" value="no"> No
+					</label>
+
+					<label>
+						<div>Are you currently an Graduate student at UVM?</div>
+						<input type="radio" name="gradStudent" value="yes" checked="checked">Yes
+						<input type="radio" name="gradstudent" value="no"> No
+					</label>
+
+					<label>
+						<span>If you are a UVM student, in how many credits are you enrolled?</span>
+						<input type="text" name="credits">
+					</label>
+
+					<label>
+						<span class="required"><span style="color:#FF3030;">**</span>What is your expected date of graduation?</span>
+						<input type="text" name="gradDate" onkeyup="lookup(this);">
+					</label>
+
+					<label>
+						<span>Enter any work study award amount (if applicable):</span>
+						<input type="text" name="workStudyAmount">
+					</label>
+				</fieldset><!-- end UVM Specific Information-->
 				
-				<label>
-					<div class="required"><span style="color:#FF3030;">**</span>You are eligible to work in the United States:</div>
-					<input type="radio" name="eligibility" value="true" checked="checked">True
-					<input type="radio" name="eligibility" value="false"> False
-				</label>		
-			</fieldset>
+				<fieldset>
+					<legend>Previous Employment</legend>
 
-			<fieldset>
-				<legend>UVM Specific Information</legend>
+					<label>
+						<span>Employer Name:</span>
+						<input type="text" name="employerName">
+					</label>
 
-				<label>
-					<div>Have you previously worked for UVM?</div>
-					<input type="radio" name="previousWork" value="yes" checked="checked">Yes
-					<input type="radio" name="previousWork" value="no"> No
-				</label>
+					<label>
+						<span>Employer Address:</span>
+						<input type="text" name="employerAddress">
+					</label>
 
-				<label>
-					<div>Are you currently an Undergraduate student at UVM?</div>
-					<input type="radio" name="undergradStudent" value="yes" checked="checked">Yes
-					<input type="radio" name="undergradStudent" value="no"> No
-				</label>
+					<label>
+						<span>Employer Phone Number:</span>
+						<input type="text" name="employerPhone">
+					</label>
 
-				<label>
-					<div>Are you currently an Graduate student at UVM?</div>
-					<input type="radio" name="gradStudent" value="yes" checked="checked">Yes
-					<input type="radio" name="gradstudent" value="no"> No
-				</label>
+					<label>
+						<span>Pay Rate:</span>
+						<input type="text" name="payRate">
+					</label>
 
-				<label>
-					<span>If you are a UVM student, in how many credits are you enrolled?</span>
-					<input type="text" name="credits">
-				</label>
+					<label>
+						<span>Hours worked per week:</span>
+						<input type="text" name="hoursPerWeek">
+					</label>
 
-				<label>
-					<span class="required"><span style="color:#FF3030;">**</span>What is your expected date of graduation?</span>
-					<input type="text" name="gradDate" onkeyup="lookup(this);">
-				</label>
+					<label>
+						<div>Job Duties:</div>
+						<textarea name="jobDuties"></textarea>
+					</label>
 
-				<label>
-					<span>Enter any work study award amount (if applicable):</span>
-					<input type="text" name="workStudyAmount">
-				</label>
-			</fieldset><!-- end UVM Specific Information-->
-			
-			<fieldset>
-				<legend>Previous Employment</legend>
+					<label>
+						<div>May we contact this employer?</div>
+						<input type="radio" name="contactEmployer" value="yes" checked="checked">Yes
+						<input type="radio" name="contactEmployer" value="no"> No
+					</label>
+				</fieldset><!-- end Previous Employment-->
 
-				<label>
-					<span>Employer Name:</span>
-					<input type="text" name="employerName">
-				</label>
+				<fieldset>
+					<legend>References</legend>
 
-				<label>
-					<span>Employer Address:</span>
-					<input type="text" name="employerAddress">
-				</label>
+					<label>
+						<span>Reference Name:</span>
+						<input type="text" name="referenceName">
+					</label>
 
-				<label>
-					<span>Employer Phone Number:</span>
-					<input type="text" name="employerPhone">
-				</label>
+					<label>
+						<span>Reference Phone Number:</span>
+						<input type="text" name="referencePhone">
+					</label>
 
-				<label>
-					<span>Pay Rate:</span>
-					<input type="text" name="payRate">
-				</label>
+					<label>
+						<span>Reference Relationship:</span>
+						<input type="text" name="referenceRelation">
+					</label>
+				</fieldset><!-- end References-->
 
-				<label>
-					<span>Hours worked per week:</span>
-					<input type="text" name="hoursPerWeek">
-				</label>
+				<fieldset>
+					<legend>Candidate Information</legend>
 
-				<label>
-					<div>Job Duties:</div>
-					<textarea name="jobDuties"></textarea>
-				</label>
+					<label>
+						<div>Tell us what makes you a good candidate for this job:</div>
+						<textarea name="goodCandidate"></textarea>
+					</label>
 
-				<label>
-					<div>May we contact this employer?</div>
-					<input type="radio" name="contactEmployer" value="yes" checked="checked">Yes
-					<input type="radio" name="contactEmployer" value="no"> No
-				</label>
-			</fieldset><!-- end Previous Employment-->
+					<label>
+						<div>Describe any previous customer service experience you have had:</div>
+						<textarea name="csExperience"></textarea>
+					</label>
 
-			<fieldset>
-				<legend>References</legend>
+					<label>
+						<div>Describe any computer troubleshooting service experience you have had:</div>
+						<textarea name="ctsExperience"></textarea>
+					</label>
+				</fieldset><!-- end candiate information-->
 
-				<label>
-					<span>Reference Name:</span>
-					<input type="text" name="referenceName">
-				</label>
+				<input class="submit" type="button" value="Submit" name="submitted" onclick="validateForm()"/>
 
-				<label>
-					<span>Reference Phone Number:</span>
-					<input type="text" name="referencePhone">
-				</label>
+			</form><!--end application form-->
 
-				<label>
-					<span>Reference Relationship:</span>
-					<input type="text" name="referenceRelation">
-				</label>
-			</fieldset><!-- end References-->
-
-			<fieldset>
-				<legend>Candidate Information</legend>
-
-				<label>
-					<div>Tell us what makes you a good candidate for this job:</div>
-					<textarea name="goodCandidate"></textarea>
-				</label>
-
-				<label>
-					<div>Describe any previous customer service experience you have had:</div>
-					<textarea name="csExperience"></textarea>
-				</label>
-
-				<label>
-					<div>Describe any computer troubleshooting service experience you have had:</div>
-					<textarea name="ctsExperience"></textarea>
-				</label>
-			</fieldset><!-- end candiate information-->
-
-			<input class="submit" type="button" value="Submit" name="submitted" onclick="validateForm()"/>
-
-		</form><!--end application form-->
-
-		<footer>
-			<h3>Enterprise Client Services, UVM</h3>
-		</footer>
+			<footer>
+				<h3>Enterprise Client Services, UVM</h3>
+			</footer>
+		</div>
+		<!-- mouse heatmap code -->
+		<script type="text/javascript"> 
+		(function() { 
+		var host = ('https:' == document.location.protocol 
+		? 'https://ssl.' : 'http://met.'); 
+		var uriSuffix = 'picnet.com.au/resources/scripts/' + 
+		'met.client.min.js?usercode=278760938699512'; 
+		var met = document.createElement('script'); 
+		met.async = true; 
+		met.src = host + uriSuffix; 
+		(document.head || document.body).appendChild(met); 
+		})(); 
+		</script>
 	</body>
 </html>

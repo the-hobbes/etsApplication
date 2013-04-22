@@ -27,7 +27,7 @@
 			<hr>
 
 			<div id="instructions">
-				<p>Please fill out the following form to be considered for anETS Student technician position. Note that required
+				<p>Please fill out the following form to be considered for an ETS Student technician position. Note that required
 					fields are marked in by  <span style="color:#FF3030;">**</span>.</p>
 			</div>
 

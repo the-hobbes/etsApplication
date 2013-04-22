@@ -23,7 +23,7 @@ function useLDAP($uvmID)
 		$filter="(|(netid=$uvmID))";
 		
 		//add all ldap items you are looking for to the array
-		$findthese = array("givenname","sn", "middleName");
+		$findthese = array("givenname","sn");
 		
 		// now do the search and get the results, which are storing in $info
 		$sr=ldap_search($ds, $dn, $filter, $findthese);

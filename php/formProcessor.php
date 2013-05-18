@@ -1,6 +1,7 @@
 <?
 // include validation functions
 include ("validationFunctions.php");
+include ("update_model.php");
 
 // pull a json array from what was posted
 $clientInfo = json_decode($_POST['data'], true);
@@ -100,11 +101,13 @@ validateEmail($email);
 // print_r($errorMsg);
 
 if($errorMsg){
-	// do something, sending the errors back to the view so they can be displayed.
+	// do nothing, sending the errors back to the view so they can be displayed.
 	return null;
 }
 else{
+	// send the email and update the database
 	sendEmail();
+	updateDb();
 }
 /**
  * validateRequiredField

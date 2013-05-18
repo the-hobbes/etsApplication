@@ -7,9 +7,9 @@
 	</head>
 
 	<body>
-		<?php include("php/useLdap.php");?>
-		<?php $userName= getenv('REMOTE_USER');?>
-		<p><?php useLDAP($userName); ?></p>
+		<?php //include("php/useLdap.php");?>
+		<?php //$userName= getenv('REMOTE_USER');?>
+		<p><?//php useLDAP($userName); ?></p>
 		<div id="main">
 			<table id="uvmHeading" width="600" cellpadding="0" cellspacing="0" style="font-family: arial,sans-serif; text-align:center; color:#fff;" >
 			  <tr>
@@ -37,12 +37,12 @@
 
 					<label>
 						<span class="required"><span style="color:#FF3030;">**</span>Last Name:</span>
-						<input type="text" name="lastName" onkeyup="lookup(this);" value="<?php echo $lastName; ?>">
+						<input type="text" name="lastName" onkeyup="lookup(this);" value="<?php //echo $lastName; ?>">
 					</label>
 
 					<label>
 						<span class="required"><span style="color:#FF3030;">**</span>First Name:</span>
-						<input type="text" name="firstName" onkeyup="lookup(this);" value="<?php echo $firstName; ?>">
+						<input type="text" name="firstName" onkeyup="lookup(this);" value="<?php //echo $firstName; ?>">
 					</label>
 
 					<label>
@@ -67,7 +67,7 @@
 
 					<label>
 						<span class="required"><span style="color:#FF3030;">**</span>UVM NetID:</span>
-						<input type="text" name="netId" onkeyup="lookup(this);" value="<?php echo $netID; ?>">
+						<input type="text" name="netId" onkeyup="lookup(this);" value="<?php //echo $netID; ?>">
 					</label>
 
 					<label>

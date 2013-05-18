@@ -105,9 +105,40 @@ if($errorMsg){
 	return null;
 }
 else{
+	// make associative array from all values
+	$data = array(
+		'firstName' => $firstName,
+		'lastName' => $lastName,
+		'middleInitial' => $middleInitial,
+		'streetAddress' => $streetAddress,
+		'zipcode' => $zipCode,
+		'email' => $email,
+		'netID' => $netID,
+		'major' => $major,
+		'usEligible' => $usEligible,
+		'previouslyWorked' => $previouslyWorked,
+		'undergradStudent' => $undergradStudent,
+		'gradStudent' => $gradStudent,
+		'creditNumber' => $creditNumber,
+		'graduationDate' => $graduationDate,
+		'workStudyAmount' => $workStudyAmount,
+		'employerName' => $employerName,
+		'employerAddress' => $employerAddress,
+		'employerPhone' => $employerPhone,
+		'payRate' => $payRate,
+		'hoursWorked' => $hoursWorked,
+		'jobDuties' => $jobDuties,
+		'mayWeContact' => $mayWeContact,
+		'referenceName' => $referenceName,
+		'referenceRelation' => $referenceRelation,
+		'referencePhone' => $referencePhone,
+		'goodCandidate' => $goodCandidate,
+		'prevCustExperience' => $prevCustExperience,
+		'prevComputerTroubleshooting' => $prevComputerTroubleshooting
+ 		);
 	// send the email and update the database
 	sendEmail();
-	updateDb();
+	updateDb($data);
 }
 /**
  * validateRequiredField
